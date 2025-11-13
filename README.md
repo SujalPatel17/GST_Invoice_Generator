@@ -66,6 +66,49 @@ Tables needed:
 - final
 
 (Structure already included inside Python code)
+CREATE DATABASE IF NOT EXISTS project;
+USE project;
+
+-- LOGIN TABLE
+CREATE TABLE login (
+    Srno INT PRIMARY KEY,
+    username VARCHAR(100),
+    password VARCHAR(100),
+    role VARCHAR(20)
+);
+
+-- CUSTOMER INFO TABLE
+CREATE TABLE info (
+    Inno INT PRIMARY KEY,
+    Cus_name VARCHAR(200),
+    mobno BIGINT,
+    Gstno VARCHAR(20)
+);
+
+-- PRODUCT TABLE
+CREATE TABLE product (
+    sr INT,
+    Description VARCHAR(300),
+    Qty INT,
+    price FLOAT,
+    Net_tot FLOAT,
+    sgst FLOAT,
+    cgst FLOAT,
+    igst FLOAT,
+    Total FLOAT,
+    Inno INT,
+    FOREIGN KEY (Inno) REFERENCES info(Inno)
+        ON DELETE CASCADE
+);
+
+-- FINAL TOTAL TABLE
+CREATE TABLE final (
+    Inno INT PRIMARY KEY,
+    final FLOAT,
+    FOREIGN KEY (Inno) REFERENCES info(Inno)
+        ON DELETE CASCADE
+);
+
 
 ------------------------------------------------------------
 ▶️ HOW TO RUN THE PROJECT
